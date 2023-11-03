@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  - let results = [{jackets:"Leather", cost:10000, brand: "tommyhilfigure"}, {jackets:"Rubber", cost:30000, brand: "northface"},{jackets:"cloth", cost:20000, brand: "woodland"},]
+
+    .container-fluid 
+      .row
+        each jacke, index in results
+            .col-sm-2(onclick=`buy(${index})`)
+              p Jackets: #{jacke.jackets}
+              p Cost: #{jacke.cost}
+              p Brand: #{jacke.brand}
+  script.
+    function buy(index) {
+      alert('You purchased item ' + (index+1));
+    }
