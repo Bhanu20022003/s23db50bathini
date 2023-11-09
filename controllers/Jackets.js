@@ -30,3 +30,18 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+
+// VIEWS
+// Handle a show all view
+exports.Jackets_view_all_Page = async function(req, res) {
+    try{
+    theJackets = await Jackets.find();
+    res.render('Jackets', { title: 'Costume Search Results', results: theJackets });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
+    
