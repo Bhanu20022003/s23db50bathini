@@ -8,9 +8,9 @@ exports.jackets_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Jackets detail: ' + req.params.id);
 };
 // Handle Jackets create on POST.
-exports.jackets_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: Jackets create POST');
-};
+ exports.jackets_create_post = function(req, res) {
+ res.send('NOT IMPLEMENTED: Jackets create POST');
+ };
 // Handle Jackets delete form on DELETE.
 exports.jackets_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Jackets delete DELETE ' + req.params.id);
@@ -36,12 +36,33 @@ res.send(`{"error": ${err}}`);
 exports.Jackets_view_all_Page = async function(req, res) {
     try{
     theJackets = await Jackets.find();
-    res.render('Jackets', { title: 'Costume Search Results', results: theJackets });
+    res.render('Jackets', { title: 'Jackets Search Results', results: theJackets });
     }
     catch(err){
     res.status(500);
     res.send(`{"error": ${err}}`);
     }
     };
+
+    exports.jackets_create_post = async function(req, res) {
+        console.log(req.body)
+        let document = new Jackets();
+        // We are looking for a body, since POST does not have query parameters.
+        // Even though bodies can be in many different formats, we will be picky
+        // and require that it be a json object
+        // {"costume_type":"goat", "cost":12, "size":"large"}
+        document.Jackets = req.body.Jackets;
+        document.cost = req.body.cost;
+        document.brand = req.body.brand;
+        try{
+        let result = await document.save();
+        res.send(result);
+        }
+        catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+        }
+        };
+        
     
     
