@@ -21,9 +21,30 @@ exports.jackets_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Jackets delete DELETE ' + req.params.id);
 };
 // Handle Jackets update form on PUT.
-exports.jackets_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Jackets update PUT' + req.params.id);
-};
+// exports.jackets_update_put = function(req, res) {
+// res.send('NOT IMPLEMENTED: Jackets update PUT' + req.params.id);
+// };
+
+exports.jackets_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await Jackets.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.jackets)    toUpdate.jackets = req.body.jackets;
+    if(req.body.cost) toUpdate.cost = req.body.cost;
+    if(req.body.brand) toUpdate.brand = req.body.brand;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    }
+
+
 //List of all Costumes
 exports.jackets_list = async function(req, res) {
 try{
@@ -55,7 +76,7 @@ exports.Jackets_view_all_Page = async function(req, res) {
         // We are looking for a body, since POST does not have query parameters.
         // Even though bodies can be in many different formats, we will be picky
         // and require that it be a json object
-        // {"costume_type":"goat", "cost":12, "size":"large"}
+        // {"costume_type":"goat", "cost":12, "brand":"large"}
         document.Jackets = req.body.Jackets;
         document.cost = req.body.cost;
         document.brand = req.body.brand;
