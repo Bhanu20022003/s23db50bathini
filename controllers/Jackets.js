@@ -7,7 +7,7 @@ res.send('NOT IMPLEMENTED: Jackets list');
 exports.jackets_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
-    result = await jackets.findById( req.params.id)
+    result = await Jackets.findById( req.params.id)
     res.send(result)
     } catch (error) {
     res.status(500)
@@ -15,10 +15,7 @@ exports.jackets_detail = async function(req, res) {
     }
    };
    
-// Handle Jackets create on POST.
- exports.jackets_create_post = function(req, res) {
- res.send('NOT IMPLEMENTED: Jackets create POST');
- };
+
 // Handle Jackets delete form on DELETE.
 exports.jackets_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Jackets delete DELETE ' + req.params.id);
