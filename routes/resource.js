@@ -17,5 +17,12 @@ router.put('/Jackets/:id', Jackets_controller.jackets_update_put);
 router.get('/Jackets/:id', Jackets_controller.jackets_detail);
 // GET request for list of all Costume items.
 router.get('/Jackets', Jackets_controller.jackets_list);
+/* GET detail costume page */
+router.get('/detail', Jackets_controller.jackets_view_one_Page);
+
+/* GET create costume page */
+router.get('/create', Jackets_controlers.jackets_create_Page);
+
 module.exports = router;
 // API for our resources
+
