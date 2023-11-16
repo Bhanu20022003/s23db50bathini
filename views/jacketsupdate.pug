@@ -2,41 +2,44 @@ extends layout
 
 block content
   h1= title
-  - let jacketsid = toShow._id
-  - let jackets_type = toShow.jackets
-  - let jacketscost = toShow.cost
-  - let jacketsbrand = toShow.brand
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let jacketsid = toShow._id
+    - let jackets_type = toShow.jackets
+    - let jacketscost = toShow.cost
+    - let jacketsbrand = toShow.brand
 
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{jacketsid}
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{jacketsid}
 
-  - let actionid = "/resource/jackets/" + jacketsid
-  form(id='jacketsForm', action= actionid, method="PUT")
-    div.form-group
-      label.jacketsAttr(for='jackets') Jackets type
-      input#jackets(type='text', name='jackets', value= jackets_type )
-    div.form-group
-      label.jacketsAttr(for='cost') Jackets cost
-      input#cost(type='number', name='cost', value= jacketscost )
-    div.form-group
-      label.jacketsAttr(for='brand') Jackets Brand
-      input#brand(type='text', name='brand', value= jacketsbrand )
-    input(type="submit")
-  script.
-    document.forms['jacketsForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that the form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error )
+    - let actionid = "/resource/jackets/" + jacketsid
+    form(id='jacketsForm', action= actionid, method="PUT" style='background-color:red')
+      div.form-group
+        label.jacketsAttr(for='jackets') Jackets type
+        input#jackets(type='text', name='jackets', value= jackets_type )
+      div.form-group
+        label.jacketsAttr(for='cost') Jackets cost
+        input#cost(type='number', name='cost', value= jacketscost )
+      div.form-group
+        label.jacketsAttr(for='brand') Jackets Brand
+        input#brand(type='text', name='brand', value= jacketsbrand )
+      input(type="submit")
+    script.
+      document.forms['jacketsForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error )
+        });
       });
-    });

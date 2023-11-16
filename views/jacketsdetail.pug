@@ -1,20 +1,28 @@
 extends layout
+
 block content
- h1= title
- - let jacketsid = toShow._id
- - let jackets_type = toShow.jackets
- - let jacketssize = toShow.cost
- - let jacketscost = toShow.brand
- div
- div.row
- div(class='jacketsAttr mr-3') jackets ID is:
- div #{jacketsid}
- div.row
- div(class='jacketsAttr mr-3') jackets Type is:
- div #{jackets_type}
- div.row
- div(class='jacketsAttr mr-3') jackets Size is:
- div #{jacketssize}
- div.row
- div(class='jacketsAttr mr-3') jackets Cost is:
- div #{jacketscost}
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let jacketsid = toShow._id
+    - let jackets_type = toShow.jackets
+    - let jacketssize = toShow.cost
+    - let jacketscost = toShow.brand
+
+    div
+      div.row
+        div(class='jacketsAttr mr-3') jackets ID is:
+        div(style='background-color:lightblue') #{jacketsid}
+
+      div.row
+        div(class='jacketsAttr mr-3') jackets Type is:
+        div(style='background-color:lightblue') #{jackets_type}
+      
+      div.row
+        div(class='jacketsAttr mr-3') jackets Size is:
+        div(style='background-color:lightblue') #{jacketssize}
+      
+      div.row
+        div(class='jacketsAttr mr-3') jackets Cost is:
+        div(style='background-color:lightblue') #{jacketscost}
