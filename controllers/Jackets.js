@@ -77,7 +77,7 @@ exports.jackets_create_post = async function (req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"costume_type":"goat", "cost":12, "brand":"large"}
-    document.Jackets = req.body.Jackets;
+    document.jackets = req.body.jackets;
     document.cost = req.body.cost;
     document.brand = req.body.brand;
     try {

@@ -21,7 +21,8 @@ router.get('/Jackets', Jackets_controller.jackets_list);
 router.get('/detail', Jackets_controller.jackets_view_one_Page);
 
 /* GET create costume page */
-router.get('/create', Jackets_controlers.jackets_create_Page);
+router.get('/create', Jackets_controller.jackets_create_Page);
+
 
 module.exports = router;
 // API for our resources
