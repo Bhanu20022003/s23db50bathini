@@ -23,6 +23,13 @@ router.get('/detail', Jackets_controller.jackets_view_one_Page);
 /* GET create costume page */
 router.get('/create', Jackets_controller.jackets_create_Page);
 
+/* GET create update page */
+router.get('/update', Jackets_controller.jackets_update_Page);
+
+/* GET delete costume page */
+router.get('/delete', Jackets_controller.jackets_delete_Page);
+
+
 
 module.exports = router;
 // API for our resources
