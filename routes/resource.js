@@ -31,13 +31,13 @@ router.get('/Jackets', Jackets_controller.jackets_list);
 router.get('/detail', Jackets_controller.jackets_view_one_Page);
 
 /* GET create costume page */
-router.get('/create', Jackets_controller.jackets_create_Page);
+router.get('/create', secured, Jackets_controller.jackets_create_Page);
 
 /* GET create update page */
 router.get('/update',secured, Jackets_controller.jackets_update_Page);
 
 /* GET delete costume page */
-router.get('/delete', Jackets_controller.jackets_delete_Page);
+router.get('/delete', secured, Jackets_controller.jackets_delete_Page);
 router.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
    });
