@@ -5,12 +5,27 @@ block content
   - let result = results
 
   div(class="container-fluid")
+    a(href='/resource/create', class='btn btn-primary mb-2') Create Jacket
     div(class="row m-1")
       each item in result 
-        - let destination = `dispatch(\"/costumes/update?id=${item._id}\")`
+        - let destination1 = `dispatch1(\"/resource/detail?id=${item._id}\")`
+        - let destination2 = `dispatch2(\"/resource/update?id=${item._id}\")`
+        - let destination3 = `dispatch3(\"/resource/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.jackets}(#{item.brand}) is #{item.cost}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destination1) Detail
+          button.btn( class="btn-primary ml-1", onclick= destination2) Update
+          button.btn( class="btn-primary ml-1", onclick= destination3) Delete
   script.
-    function dispatch(path){
+    function dispatch1(path){
     window.location.href=path
     }
+  script.
+    function dispatch2(path){
+    window.location.href=path
+    }
+  script.
+    function dispatch3(path){
+    window.location.href=path
+    }
+    
+  
